@@ -3,6 +3,7 @@ package org.example.seminar.Apteca;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 //Лекарство
 public class Pharmacy implements Iterable<PharmancyComponent>, Comparable<Pharmacy> {
@@ -21,6 +22,25 @@ public class Pharmacy implements Iterable<PharmancyComponent>, Comparable<Pharma
 
     public void setComponents(List<PharmancyComponent> components) {
         this.components = components;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Pharmacy)) return false;
+        return Objects.equals(getComponents(), ((Pharmacy)o).getComponents());
+    }
+// Это предложенный IDE вариант переопределения. Мне не понятно применение слова that.
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (!(o instanceof Pharmacy that)) return false;
+//        return Objects.equals(getComponents(), that.getComponents());
+//    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getComponents());
     }
 
     public int getIndex() {
@@ -72,9 +92,18 @@ public class Pharmacy implements Iterable<PharmancyComponent>, Comparable<Pharma
     }
 
 
-    @Override
+    @Override // Сравнение по коммулятивному power.
     public int compareTo(Pharmacy o) {
+        int thisPower = 0;
+        int thatPower = 0;
 
-        return 0;
+        for (int i=0; i<this.components.size(); i++) {
+            thisPower += this.components.get(i).getPower();
+        }
+        for (int i=0; i<o.components.size(); i++) {
+            thatPower += o.components.get(i).getPower();
+        }
+
+        return thisPower - thatPower;
     }
 }

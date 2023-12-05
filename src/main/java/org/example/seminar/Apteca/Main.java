@@ -6,42 +6,35 @@ public class Main {
 
     public static void main(String[] args) {
 
-        PharmancyComponent azitroment = new Azitronit("Azitronit", "10 Мг", 50);
-        PharmancyComponent azitroment1 = new Azitronit("Azitronit", "10 Мг", 50);
-        PharmancyComponent pinicilin = new Pinicilin("Pinicilin", "10 Мг", 120);
+        PharmancyComponent azitrometi = new Azitronit("Azitrometi", "10 Мг", 80);
+        PharmancyComponent charcoal = new Azitronit("Charcoal", "10 Мг", 50);
+        PharmancyComponent penecelini = new Pinicilin("Penecilini", "10 Мг", 120);
         PharmancyComponent water = new Water("Water", "10 Мг", 20);
-        PharmancyComponent water2 = new Water("Water", "10 Мг", 20);
+        PharmancyComponent naCl = new Water("NaCl", "10 Мг", 22);
 
         List<PharmancyComponent> pharmancyComponents = new ArrayList<>();
-        pharmancyComponents.add(azitroment);
-        pharmancyComponents.add(water2);
+        pharmancyComponents.add(azitrometi);
+        pharmancyComponents.add(naCl);
         pharmancyComponents.add(water);
-        pharmancyComponents.add(pinicilin);
+        pharmancyComponents.add(charcoal);
 
-        System.out.println(pharmancyComponents);
-
-        Collections.sort(pharmancyComponents);
-        System.out.println(pharmancyComponents);
-
-        Pharmacy pharmacy1 = new Pharmacy().addComponent(azitroment).addComponent(water);
-        Pharmacy pharmacy2 = new Pharmacy().addComponent(pinicilin).addComponent(water);
-
-        for (PharmancyComponent comp: pharmacy1) {
-            System.out.println(comp.getName());
-        }
+        Pharmacy pharmacy1 = new Pharmacy().addComponent(azitrometi).addComponent(water);
+        Pharmacy pharmacy2 = new Pharmacy().addComponent(charcoal).addComponent(water);
+        Pharmacy pharmacy3 = new Pharmacy().addComponent(charcoal).addComponent(water);
+        Pharmacy pharmacy4 = new Pharmacy().addComponent(azitrometi).addComponent(naCl);
 
         List<Pharmacy> pharmacies = new ArrayList<>();
         pharmacies.add(pharmacy1);
         pharmacies.add(pharmacy2);
+        pharmacies.add(pharmacy3);
+        pharmacies.add(pharmacy4);
 
-
-        Set<PharmancyComponent> set = new HashSet<>();
-        set.add(azitroment);
-        set.add(azitroment1);
-        set.add(azitroment);
-
-        System.out.println("/////////////////////////");
-        System.out.println(set);
+        Set<Pharmacy> result = new HashSet<>(pharmacies);
+        result.add(pharmacy1);
+        result.add(pharmacy2);
+        result.add(pharmacy3);
+        result.add(pharmacy4);
+        System.out.println(result.size()); // тут вывод должен быть равен количеству УНИКАЛЬНЫХ экземпляров Pharmacy!
 
         //Collections.sort(pharmacies, new );
 

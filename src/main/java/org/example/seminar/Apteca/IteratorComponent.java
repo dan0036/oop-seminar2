@@ -27,3 +27,5 @@ public class IteratorComponent implements Iterator<PharmancyComponent>{
         return components.get(index++);
     }
 }
+
+
